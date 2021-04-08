@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  comunication_api:
+    container_name: comunication-api
+    image: node:12
+    working_dir: /opt/comunication
+    volumes:
+      - ./public/:/opt/comunication/public/
+      - ./package.json:/opt/comunication/package.json
+      - ./.env:/opt/comunication/.env
+    ports:
+      - $PORT:$PORT
+    command: bash -c "npm install --only=prod && npm run build:debug"
